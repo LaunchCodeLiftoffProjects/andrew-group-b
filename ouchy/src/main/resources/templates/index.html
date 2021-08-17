@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Project Ouchy</title>
-</head>
-<body>
-Welcome to Project Ouchy
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head th:replace="Fragments\head :: head"></head>
+<body class="bg-light">
+<div th:replace="Fragments\navbar :: navbar"></div>
+<div align="center">Welcome to Project Ouchy
+</div>
+<div align="center">
+
+<iframe src="https://giphy.com/embed/C9x8gX02SnMIoAClXa" width="266" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/C9x8gX02SnMIoAClXa">via GIPHY</a></p>
+
+</div>
+
 </body>
+<footer th:replace="Fragments\footer :: footer"></footer>
 </html>
