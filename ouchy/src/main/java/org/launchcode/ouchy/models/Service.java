@@ -16,7 +16,7 @@ public class Service {
     @GeneratedValue
     private int serviceId;
 
-    @ManyToOne
+    //@ManyToOne
     private int providerId;
 
     @NotNull
