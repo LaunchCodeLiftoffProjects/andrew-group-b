@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head th:replace="Fragments\head :: head"></head>
+<body class="bg-light">
+<div th:replace="Fragments\navbar :: navbar"></div>
+<div align="center">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col">
+            <form method="post">
+                        <!-- Text input -->
+                <div class="form-outline mb-4 p-2">
+                    <!--<label class="form-label h3" for="providerName">Company name</label> -->
+                    <input type="text" th:field="${provider.providerName}" class="form-control text-center" placeholder="Company Name" required/>
+                </div>
+
+                <!-- Text input -->
+                <div class="form-outline mb-4 p-2">
+                    <!--<label class="form-label h3" for="providerAddress">Address</label> -->
+                    <input type="text" th:field="${provider.providerAddress}" name="providerAddress" class="form-control text-center" placeholder="Address" required/>
+                </div>
+
+                <!-- Email input -->
+                <div class="form-outline mb-4 p-2">
+                    <!--<label class="form-label h3" for="providerEmail">Email</label> -->
+                    <input type="email" th:field="${provider.providerEmail}" name="providerEmail" placeholder="Email" class="form-control text-center" required/>
+                </div>
+
+                <!-- Number input -->
+                <div class="form-outline mb-4 p-2">
+                    <!--<label class="form-label h3" for="providerPhone">Phone</label> -->
+                    <input type="text" th:field="${provider.providerPhone}" name="providerPhone" class="form-control text-center" placeholder="Phone" required/>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+
+</body>
+<footer th:replace="Fragments\footer :: footer"></footer>
+</html>
