@@ -16,8 +16,7 @@ public class Service {
     @GeneratedValue
     private int serviceId;
 
-//    @ManyToOne
-    private int providerId;
+
 
     @NotNull
     private double serviceCost;
