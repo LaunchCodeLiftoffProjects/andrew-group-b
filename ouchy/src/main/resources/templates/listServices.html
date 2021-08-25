@@ -16,10 +16,10 @@
                                 <th:block th:each="serv : ${provider.providerServices}">
                                     <th:block th:if="${serv.serviceID == service.serviceId}">
                                         <div class="row">
-                                            <div class="col" th:text="${provider.providerName}"></div>
-                                            <div class="col" th:text="${provider.providerPhone}"></div>
-                                            <div class="col" th:text="${provider.providerEmail}"></div>
-                                            <div class="col" th:text="${serv.serviceCost}"></div>
+                                            <div class="col-lg-3 text-start" th:text="${provider.providerName}"></div>
+                                            <div class="col-lg-3 text-start" th:text="${provider.providerPhone}"></div>
+                                            <div class="col-lg-3 text-start" th:text="${provider.providerEmail}"></div>
+                                            <div class="col-lg-3 text-end" th:text="${'$' + serv.serviceCost}"></div>
                                         </div>
                                     </th:block>
                                 </th:block>

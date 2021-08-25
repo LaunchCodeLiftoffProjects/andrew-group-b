@@ -10,20 +10,21 @@
                 <br>
                 <div class="row border border-secondary rounded" >
                     <br>
-                    <div class="col text-center">
-                        <h4 th:text="${prov.providerName}"></h4>
+                    <div class="col text-start">
+                        <h4 class="text-center" th:text="${prov.providerName}"></h4>
                         <br>
                         <p th:text="${'EMAIL:  ' + prov.providerEmail}"></p>
                         <p th:text="${'PHONE:  ' + prov.providerPhone}"></p>
                         <p th:text="${'ADDRESS:  ' + prov.providerAddress}"></p>
                     </div>
-                    <div class="col text-center">
-                        <h4> Services Offered</h4>
+                    <div class="col text-start">
+                        <h4 class="text-center"> Services Offered</h4>
+                        <br>
                         <th:block th:each="serv : ${prov.providerServices}">
-                            <p>
-                               <span class="text-left" th:text="${serv.serviceName}"></span>
-                               <span class="text-left" th:text="${serv.serviceCost}"></span>
-                            </p>
+                            <div class="row">
+                               <div class="col text-start" th:text="${serv.serviceName}"></div>
+                               <div class="col text-end" th:text="${'$' + serv.serviceCost}"></div>
+                            </div>
                         </th:block>
                     </div>
                 </div>
