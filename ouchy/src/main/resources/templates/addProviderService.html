@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head th:replace="Fragments\head :: head"></head>
+<body class="bg-light">
+<div th:replace="Fragments\navbar :: navbar"></div>
+<div align="center">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col">
+            <div class="row">
+                <h5 th:text="${provider.providerName}"></h5>
+                <p>
+                    <span th:text="${provider.providerEmail}"></span>
+                    <span>    --    </span>
+                    <span th:text="${provider.providerPhone}"></span>
+                    <br>
+                    <br>
+                </p>
+            </div>
+            <div class="row">
+                <table class="text-center table table-striped table-bordered">
+                    <tr class="table-warning">
+                        <th>Service</th>
+                        <th>Cost</th>
+                    </tr>
+                    <tr th:each="serv : ${provider.providerServices}">
+                        <td th:text="${serv.serviceName}"></td>
+                        <td th:text="${serv.serviceCost}"></td>
+                    </tr>
+                </table>
+                <br>
+                <br>
+            </div>
+            <form method="post">
+                <div class="row">
+                    <br>
+                    <br>
+                    <div class="col">
+                        <!-- Dropdown input -->
+                        <div class="form-outline mb-4 p-2">
+                            <select name="serviceID" class="form-control text-center">
+                                <option th:each="service : ${services}" th:value="${service.serviceId}" th:text="${service.serviceName}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!-- Number input -->
+                        <div class="form-outline mb-4 p-2">
+                            <input type="number" name="serviceCost" class="form-control text-center" placeholder="$0" required/>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+
+</body>
+<footer th:replace="Fragments\footer :: footer"></footer>
+</html>
