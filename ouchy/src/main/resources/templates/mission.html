@@ -2,17 +2,27 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
 <head th:replace="Fragments\head :: head">
     <link rel="stylesheet" type="text/css" href="style.css">
+
 </head>
-<body class="bg-light">
-<div th:replace="Fragments\navbar :: navbar"></div>
+
+<body class="bg-info">
+    <div th:replace="Fragments\navbar :: navbar"></div>
 <div align="center">Welcome to Project Ouchy.
 </div>
-<img src="Ben.JPG" alt = "Test Image"/>
+
 <div align="center">
-    <p>Having no or bad insurance is stressful. We are here to make it less stressful. Our passion is to improve lives and your ability to more easily access information on where to go when you or your loved ones need help.</p>
+<img src="ouchy1.jpg" alt = "sick clip"/><BR> <!-- moved to resources root and i can not get this image to load :( -->
+
+    <p>Having no or bad insurance is stressful. We are here to make it less stressful.<BR>
+        Our passion is to improve lives and your ability to easily access information on where to go when you or your loved ones need help.</p>
 </div>
-<div align="center">
-    <iframe width="800" height="450" src="https://www.youtube.com/embed/kG2JvYSqGR4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<div align="center"> <BR><BR>
+    <iframe width="800" height="450" src="https://www.youtube.com/embed/kG2JvYSqGR4"
+            title="YouTube video player"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+    </iframe>
 </div>
 
 </body>
