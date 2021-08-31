@@ -54,4 +54,11 @@ public class ListController {
 
         return "mission";
     }
+
+    @GetMapping("AboutUs")
+    public String aboutUs(Model model) {
+        model.addAttribute("title", "About Us");
+
+        return "AboutUs";
+    }
 }
