@@ -23,7 +23,8 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: 1000;
+    /*  Keeping z index high forces it to show on top of other elements */
+    z-index: 1000000000;
     float: left;
     display: none;
     min-width: 160px;
@@ -68,3 +69,8 @@ body {
       background-image: none;
     }
 
+/*  Keeps the search results from showing at bottom of page */
+.ui-helper-hidden-accessible {
+    display: none;
+    visibility: hidden;
+}
