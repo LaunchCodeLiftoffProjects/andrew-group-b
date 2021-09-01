@@ -66,12 +66,9 @@ public class ListController {
         Iterable<Provider> providers = providerRepository.findAll();
         Iterable<Service> services = serviceRepository.findAll();
 
-        System.out.println("Search Term = " + term);
-
         for(Provider provider : providers) {
             if(provider.getProviderName().toLowerCase().startsWith(term.toLowerCase())) {
                 suggestions.add(provider.getProviderName());
-                System.out.println("Suggestion Added:  " + provider.getProviderName());
             }
         }
 
