@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head th:replace="Fragments\head :: head"></head>
+<body class="bg-light">
+<div th:replace="Fragments\navbar :: navbar"></div>
+<div align="center">Welcome to Project Ouchy
+</div>
+<div align="center">
+    <form method="post" class="form-light">
+        <div class="form-group">
+            <label class="text-secondary">Username
+                <input class="form-control" th:field="${registerFormDTO.username}" />
+            </label>
+            <p class="error" th:errors="${registerFormDTO.username}"></p>
+        </div>
+        <div class="form-group">
+            <label class="text-secondary">Password
+                <input class="form-control" th:field="${registerFormDTO.password}" type="password" />
+            </label>
+            <p class="error" th:errors="${registerFormDTO.password}"></p>
+        </div>
+        <div class="form-group">
+            <label class="text-secondary">Verify Password
+                <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password" />
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="text-secondary">Are you a provider?
+                <select class="form-control" th:field="${registerFormDTO.Provider}">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </label>
+        </div>
+        <input type="submit" class="btn btn-secondary" value="Register" />
+    </form>
+</div>
+
+</body>
+<footer th:replace="Fragments\footer :: footer"></footer>
+</html>
