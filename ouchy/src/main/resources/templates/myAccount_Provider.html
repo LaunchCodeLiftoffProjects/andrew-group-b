@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head th:replace="Fragments\head :: head"></head>
+<body class="bg-light">
+<div th:replace="Fragments\navbar :: navbar"></div>
+<div align="center">Welcome to Project Ouchy
+</div>
+<div align="center">
+    <h5 th:text="${'Welcome ' + user.username}">Hi</h5>
+    <br>
+    <br>
+    <h3 th:text="${'Your business name:  ' + provider.providerName}"></h3>
+    <br>
+    <h3 th:text="${'Your business address:  ' + provider.providerAddress}"></h3>
+    <br>
+    <h3 th:text="${'Your business phone:  ' + provider.providerPhone}"></h3>
+    <br>
+    <h3 th:text="${'Your business name:  ' + provider.providerEmail}"></h3>
+    <br>
+    <h1 th:each="service : ${services}" th:text="${service.serviceName + ' - $' + service.serviceCost}"></h1>
+    <br>
+    <a th:href="${'/AddProviderService/' + provider.providerId}" class="btn btn-secondary btn-sm">Add Services</a>
+</div>
+
+
+</body>
+<footer th:replace="Fragments\footer :: footer"></footer>
+</html>

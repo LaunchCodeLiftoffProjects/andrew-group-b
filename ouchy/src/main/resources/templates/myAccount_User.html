@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head th:replace="Fragments\head :: head"></head>
+<body class="bg-light">
+<div th:replace="Fragments\navbar :: navbar"></div>
+<div align="center">Welcome to Project Ouchy
+</div>
+<div align="center">
+    <h5 th:text="${'Welcome ' + user.username}">Hi</h5>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/T0P6MC8Ris8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+</body>
+<footer th:replace="Fragments\footer :: footer"></footer>
+</html>
