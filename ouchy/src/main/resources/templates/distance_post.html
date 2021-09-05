@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head th:replace="Fragments\head :: head"></head>
+<body class="bg-light">
+<div th:replace="Fragments\navbar :: navbar"></div>
+<div align="center">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col">
+            <form method="post">
+                <!-- Text input -->
+                <div class="form-outline mb-4 p-2">
+                    <input type="text" name="clientAddress" class="form-control text-center" placeholder="Enter your address" required/>
+                </div>
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <div class="row" align="center" th:each="data : ${destinationData}">
+        <h1 th:text="${data.get('Name')}"></h1>
+        <h3 th:text="${data.get('Address')}"></h3>
+        <p>
+            <span th:text="${'Distance:  ' + data.get('Distance')}"></span>
+            <span th:text="${'Time:  ' + data.get('Time')}"></span>
+        </p>
+    </div>
+</div>
+
+
+</body>
+<footer th:replace="Fragments\footer :: footer"></footer>
+</html>
