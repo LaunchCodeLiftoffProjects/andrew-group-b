@@ -101,18 +101,21 @@ public class DistanceSearchController {
             JSONObject durationText = detailsObject.getJSONObject("duration");
 
             /**  This is the time text we want! */
-            System.out.println("Time:  " + durationText.get("text"));
+            //System.out.println("Time:  " + durationText.get("text"));
 
             JSONObject distanceText = detailsObject.getJSONObject("distance");
 
             /**  This is the distance value we want!  */
-            System.out.println("Distance  " + distanceText.get("value"));
+            //System.out.println("Distance  " + distanceText.get("value"));
 
-            /**  Distance data is returned in meters, converting it to miles */
-            Double milesToDest = distanceText.getDouble("value")/1609.34;
+            /**  Distance data is returned in meters, converting it to miles then rounding to nearest 1/10th mile */
+            double distance = distanceText.getDouble("value");
+            double milesToDest = distance/1609.34;
+            Double roundedMiles = Double.valueOf(Math.round(milesToDest*10))/10.0;
+
 
             data.put("Time", durationText.get("text"));
-            data.put("Distance", milesToDest);
+            data.put("Distance", roundedMiles);
 
             destinationData.add(data);
         }
