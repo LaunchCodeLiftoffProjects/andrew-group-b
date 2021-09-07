@@ -19,11 +19,11 @@
         <div class="col-2"></div>
     </div>
     <div class="row" align="center" th:each="data : ${destinationData}">
-        <h1 th:text="${data.get('Name')}"></h1>
-        <h3 th:text="${data.get('Address')}"></h3>
+        <h1 th:text="${data.companyName}"></h1>
+        <h3 th:text="${data.companyAddress}"></h3>
         <p>
-            <span th:text="${'Distance:  ' + data.get('Distance')}"></span>
-            <span th:text="${'Time:  ' + data.get('Time')}"></span>
+            <span th:text="${'Distance:  ' + data.distance + ' Miles | '}"></span>
+            <span th:text="${'Time:  ' + data.time}"></span>
         </p>
     </div>
 </div>
