@@ -5,6 +5,7 @@ package org.launchcode.ouchy.controllers;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.launchcode.ouchy.models.Data.ProviderRepository;
+import org.launchcode.ouchy.models.DistanceSearchData;
 import org.launchcode.ouchy.models.Provider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,9 +19,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class DistanceSearchController {
@@ -66,7 +65,7 @@ public class DistanceSearchController {
         String origin = convertAddressToURL(clientAddress);
         String destination = "";
 
-        List<HashMap> destinationData = new ArrayList<HashMap>();
+        List<DistanceSearchData> destinationData = new ArrayList<DistanceSearchData>();
 
         Iterable<Provider> providers = providerRepository.findAll();
 
@@ -78,11 +77,6 @@ public class DistanceSearchController {
             /** Creating URL to access the API */
             String url = URL_START + origin + URL_MIDDLE + destination + URL_END + API_KEY;
 
-            /** Starting the HashMap data created during each loop.  Will contain "Provider", "Distance" and "Time" */
-            HashMap data = new HashMap();
-            data.put("Name", provider.getProviderName());
-            data.put("Address", provider.getProviderAddress());
-
             /** Sending the request to DistanceMatrixAPI to get JSON data */
 
             HttpClient client = HttpClient.newHttpClient();
@@ -91,6 +85,8 @@ public class DistanceSearchController {
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            /**  Drilling down to the needed data in the returned JSON */
 
             JSONObject object = new JSONObject(response.body().toString());
             Object rows = object.get("rows");
@@ -113,12 +109,14 @@ public class DistanceSearchController {
             double milesToDest = distance/1609.34;
             Double roundedMiles = Double.valueOf(Math.round(milesToDest*10))/10.0;
 
+            /**  Putting search data into applicable class so can be sorted after all data is returned */
 
-            data.put("Time", durationText.get("text"));
-            data.put("Distance", roundedMiles);
+            DistanceSearchData data = new DistanceSearchData(durationText.get("text").toString(),roundedMiles,provider.getProviderName(),provider.getProviderAddress());
 
             destinationData.add(data);
         }
+
+        Collections.sort(destinationData);
 
         model.addAttribute("destinationData",destinationData);
 
