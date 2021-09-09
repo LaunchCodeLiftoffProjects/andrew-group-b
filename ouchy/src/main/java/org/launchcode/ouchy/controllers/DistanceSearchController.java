@@ -59,7 +59,7 @@ public class DistanceSearchController {
     }
 
     @PostMapping("Distance")
-    public String processCalcDistance(Model model, @RequestParam String clientAddress) throws IOException, InterruptedException {
+    public String processCalcDistance(Model model, @RequestParam String clientAddress, @RequestParam String sortType) throws IOException, InterruptedException {
         model.addAttribute("title", "Distance API Test");
 
         String origin = convertAddressToURL(clientAddress);
@@ -116,10 +116,36 @@ public class DistanceSearchController {
             destinationData.add(data);
         }
 
-        Collections.sort(destinationData);
+        if(sortType.equals("Time")) {
+            Collections.sort(destinationData, new SortByTime());
+        } else {
+            Collections.sort(destinationData, new SortByDistance());
+        }
 
         model.addAttribute("destinationData",destinationData);
 
         return "distance_post";
+    }
+
+    class SortByDistance implements Comparator<DistanceSearchData> {
+        /**  Used for sorting in ascending order of distance from user */
+
+        @Override
+        public int compare(DistanceSearchData a, DistanceSearchData b) {
+            return a.getDistance().compareTo(b.getDistance());
+        }
+    }
+
+    class SortByTime implements Comparator<DistanceSearchData> {
+        /**  Used for sorting in ascending order of time from user */
+
+        @Override
+        public int compare(DistanceSearchData a, DistanceSearchData b) {
+
+            Integer timeA = Integer.valueOf(a.getTime().replace(a.getTime().substring(a.getTime().indexOf(" "), a.getTime().length()),""));
+            Integer timeB = Integer.valueOf(b.getTime().replace(b.getTime().substring(b.getTime().indexOf(" "), b.getTime().length()),""));
+
+            return timeA.compareTo(timeB);
+        }
     }
 }

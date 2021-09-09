@@ -1,5 +1,7 @@
 package org.launchcode.ouchy.models;
 
+import java.util.Comparator;
+
 public class DistanceSearchData implements Comparable<DistanceSearchData> {
 
     private String time;
@@ -51,6 +53,6 @@ public class DistanceSearchData implements Comparable<DistanceSearchData> {
 
     @Override
     public int compareTo(DistanceSearchData o) {
-        return this.distance.compareTo(o.getDistance());
+         return this.distance.compareTo(o.getDistance());
     }
 }

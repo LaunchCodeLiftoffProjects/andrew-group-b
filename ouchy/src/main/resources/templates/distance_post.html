@@ -8,12 +8,28 @@
         <div class="col-2"></div>
         <div class="col">
             <form method="post">
-                <!-- Text input -->
+                <!-- Text input for address -->
                 <div class="form-outline mb-4 p-2">
                     <input type="text" name="clientAddress" class="form-control text-center" placeholder="Enter your address" required/>
                 </div>
+
+                <!-- Radio input for filtering by Time or Distance -->
+                <div class="align-center">
+                    Sort results by --
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="sortType" id="sortType1" value="Distance" autocomplete="off" checked>
+                        <label class="btn btn-outline-secondary" for="sortType1">Distance</label>
+
+                        <input type="radio" class="btn-check" name="sortType" id="sortType2" value="Time" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="sortType2">Time</label>
+                    </div>
+                </div>
+
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
+                <div class="form-outline mb-4 p-2">
+                    <br>
+                    <button type="submit" class="btn btn-warning btn-block mb-4">Submit</button>
+                </div>
             </form>
         </div>
         <div class="col-2"></div>
