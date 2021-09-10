@@ -30,6 +30,9 @@ public class DistanceSearchController {
     private static final String API_KEY = "AlphaDMAbbQwYhDqcKFcg3nU8znJy3kkBwPDWNiN";
 
     public String convertAddressToURL(String addy) {
+        /**  Converting address to URL friendly format.  EX  " " = %20, "," = %7c etc.
+         * There may be an API that could do this for us, what I have here does not fix all issues with user address entry
+         */
         String street = addy.substring(0,addy.indexOf(","));
         street = street.replace(" ","%20");
         addy = addy.substring(addy.indexOf(",")+1);
@@ -127,21 +130,19 @@ public class DistanceSearchController {
         return "distance_post";
     }
 
+    /**  Used for sorting in ascending order of distance from user */
     class SortByDistance implements Comparator<DistanceSearchData> {
-        /**  Used for sorting in ascending order of distance from user */
-
         @Override
         public int compare(DistanceSearchData a, DistanceSearchData b) {
             return a.getDistance().compareTo(b.getDistance());
         }
     }
 
+    /**  Used for sorting in ascending order of time from user */
     class SortByTime implements Comparator<DistanceSearchData> {
-        /**  Used for sorting in ascending order of time from user */
-
         @Override
         public int compare(DistanceSearchData a, DistanceSearchData b) {
-
+            /**  Time is currently stored as string, ex: "17 mins".  Need to extract the integer values then compare them */
             Integer timeA = Integer.valueOf(a.getTime().replace(a.getTime().substring(a.getTime().indexOf(" "), a.getTime().length()),""));
             Integer timeB = Integer.valueOf(b.getTime().replace(b.getTime().substring(b.getTime().indexOf(" "), b.getTime().length()),""));
 

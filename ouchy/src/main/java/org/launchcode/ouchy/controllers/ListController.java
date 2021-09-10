@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.Console;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -67,6 +68,11 @@ public class ListController {
         return "mission";
     }
 
+    /** Generates the JSON data for the search box autocomplete
+     * Currently searches for any Provider/Service name that contains the search term.  Could update later to list those
+     * that start with the term first then add those that contain the term second.  May be more useful to users.
+     */
+
     @RequestMapping("searchTermAutocomplete")
     @ResponseBody
     public List<String> searchTermAutocomplete(@RequestParam String term) {
@@ -75,17 +81,22 @@ public class ListController {
         Iterable<Provider> providers = providerRepository.findAll();
         Iterable<Service> services = serviceRepository.findAll();
 
+        /**  Checking to see if the provider name contains the search term */
         for(Provider provider : providers) {
-            if(provider.getProviderName().toLowerCase().startsWith(term.toLowerCase())) {
+            if(provider.getProviderName().toLowerCase().contains(term.toLowerCase())) {
                 suggestions.add(provider.getProviderName());
             }
         }
 
+        /**  Checking to see if the service name contains the search term */
         for(Service service : services) {
-            if(service.getServiceName().toLowerCase().startsWith(term.toLowerCase())) {
+            if(service.getServiceName().toLowerCase().contains(term.toLowerCase())){
                 suggestions.add(service.getServiceName());
             }
         }
+
+        /**  Sorting possible results alphabetically  */
+        Collections.sort(suggestions);
 
         return suggestions;
     }
