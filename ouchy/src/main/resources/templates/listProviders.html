@@ -4,7 +4,13 @@
 <body class="bg-light">
 <div th:replace="Fragments\navbar :: navbar"></div>
     <div class="row">
-        <div class="col-lg-2"></div>
+        <div class="col-lg-2">
+            <div class="form-outline mb-4 p-2 text-center">
+                <br>
+                <a href="/Providers?sort=Asc" class="btn btn-info border border-dark btn-block mb-4">Ascending</a>
+                <a href="/Providers?sort=Desc" class="btn btn-info border border-dark btn-block mb-4">Descending</a>
+            </div>
+        </div>
         <div class="col">
             <th:block th:each="prov : ${providers}">
                 <br>
