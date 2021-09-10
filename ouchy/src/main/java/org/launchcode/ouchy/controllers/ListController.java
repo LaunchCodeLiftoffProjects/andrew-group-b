@@ -27,9 +27,16 @@ public class ListController {
     ServiceRepository serviceRepository;
 
     @GetMapping("Providers")
-    public String providersListHome(Model model) {
+    public String providersListHome(Model model, @RequestParam(required = false) String sort) {
         model.addAttribute("title", "List of all providers");
-        model.addAttribute("providers", providerRepository.findAll());
+
+        System.out.println("Sort--" + sort);
+
+        if(sort != null && sort.equals("Desc")) {
+            model.addAttribute("providers", providerRepository.findByOrderByProviderNameDesc());
+        } else {
+            model.addAttribute("providers", providerRepository.findByOrderByProviderNameAsc());
+        }
 
         return "listProviders";
     }

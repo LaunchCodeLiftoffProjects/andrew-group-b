@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProviderRepository extends PagingAndSortingRepository<Provider, Integer> {
+    Iterable<Provider> findByOrderByProviderNameAsc();
+
+    Iterable<Provider> findByOrderByProviderNameDesc();
 }
