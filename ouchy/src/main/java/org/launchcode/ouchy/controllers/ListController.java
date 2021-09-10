@@ -30,8 +30,6 @@ public class ListController {
     public String providersListHome(Model model, @RequestParam(required = false) String sort) {
         model.addAttribute("title", "List of all providers");
 
-        System.out.println("Sort--" + sort);
-
         if(sort != null && sort.equals("Desc")) {
             model.addAttribute("providers", providerRepository.findByOrderByProviderNameDesc());
         } else {
@@ -42,11 +40,15 @@ public class ListController {
     }
 
     @GetMapping("Services")
-    public String servicesListHome(Model model) {
+    public String servicesListHome(Model model, @RequestParam(required = false) String sort) {
         model.addAttribute("title", "List of all Services");
-        model.addAttribute("services", serviceRepository.findAll());
-        model.addAttribute("providers",providerRepository.findAll());
+        model.addAttribute("providers",providerRepository.findByOrderByProviderNameAsc());
 
+        if(sort != null && sort.equals("Desc")) {
+            model.addAttribute("services", serviceRepository.findByOrderByServiceNameDesc());
+        } else {
+            model.addAttribute("services", serviceRepository.findByOrderByServiceNameAsc());
+        }
         return "listServices";
     }
 
@@ -55,7 +57,7 @@ public class ListController {
         model.addAttribute("title", "Search Results");
         model.addAttribute("providers", Provider.userSearch(searchTerm, providerRepository.findAll()));
 
-        return "listProviders";
+        return "search";
     }
 
     @GetMapping("Mission")
