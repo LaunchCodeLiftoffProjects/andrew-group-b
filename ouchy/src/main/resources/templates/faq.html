@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head th:replace="Fragments\head :: head">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="bg-light">
+<div th:replace="Fragments\navbar :: navbar"></div>
+<div align="center"><h1>Welcome to Project Ouchy.</h1>
+</div>
+<div class="container">
+    <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+    <div class="accordion accordion-flush" id="questions">
+        <!-- Item 1 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-one">
+                    Why is healthcare so damned expensive?
+                </button>
+            </h2>
+            <div id="question-one" class="accordion-collapse collapse" data-bs-parent="#questions">
+                <div class="accordion-body">
+                    Because 'murica.
+                </div>
+            </div>
+        </div>
+        <!-- Item 2 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-two">
+                    Is your cost info accurate?
+                </button>
+            </h2>
+            <div id="question-two" class="accordion-collapse collapse" data-bs-parent="#questions">
+                <div class="accordion-body">
+                    Nope, not at all.  This as just an MVP and doesn't contain any real data!
+                </div>
+            </div>
+        </div>
+        <!-- Item 3 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-three">
+                    What do I need to know?
+                </button>
+            </h2>
+            <div id="question-three" class="accordion-collapse collapse" data-bs-parent="#questions">
+                <div class="accordion-body">
+                    Brush your teeth, comb your hair, take a shower, eat right, exercise and take care of yourself.
+                </div>
+            </div>
+        </div>
+        <!-- Item 4 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-four">
+                    How do I sign up?
+                </button>
+            </h2>
+            <div id="question-four" class="accordion-collapse collapse" data-bs-parent="#questions">
+                <div class="accordion-body">
+                    See that handy "My Account" button on the navbar up top?  Click on it...
+                </div>
+            </div>
+        </div>
+        <!-- Item 5 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-five">
+                    Where can I get insurance?
+                </button>
+            </h2>
+            <div id="question-five" class="accordion-collapse collapse" data-bs-parent="#questions">
+                <div class="accordion-body">
+                    www.healthcare.gov
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<footer th:replace="Fragments\footer :: footer"></footer>
+</html>

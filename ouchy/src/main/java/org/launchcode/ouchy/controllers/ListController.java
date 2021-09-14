@@ -61,11 +61,18 @@ public class ListController {
         return "search";
     }
 
-    @GetMapping("Mission")
+    @GetMapping("FAQ")
     public String missionImpossible(Model model) {
-        model.addAttribute("title", "Our Mission");
+        model.addAttribute("title", "Frequently asked questions");
 
-        return "mission";
+        return "faq";
+    }
+
+    @GetMapping("AboutUs")
+    public String displayAboutUs(Model model) {
+        model.addAttribute("title", "About Us!");
+
+        return "aboutus";
     }
 
     /** Generates the JSON data for the search box autocomplete

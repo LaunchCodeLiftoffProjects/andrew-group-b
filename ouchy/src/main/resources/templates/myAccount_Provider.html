@@ -3,10 +3,10 @@
 <head th:replace="Fragments\head :: head"></head>
 <body class="bg-light">
 <div th:replace="Fragments\navbar :: navbar"></div>
-<div align="center">Welcome to Project Ouchy
-</div>
+
 <div align="center">
-    <h5 th:text="${'Welcome ' + user.username}">Hi</h5>
+    <h5 th:text="${'Welcome ' + user.username}">Hi </h5>
+    <a href="/Logout" class="btn btn-danger my-3">Log Out</a>
     <br>
     <br>
     <h3 th:text="${'Your business name:  ' + provider.providerName}"></h3>
@@ -19,7 +19,9 @@
     <br>
     <h1 th:each="service : ${services}" th:text="${service.serviceName + ' - $' + service.serviceCost}"></h1>
     <br>
-    <a th:href="${'/AddProviderService/' + provider.providerId}" class="btn btn-secondary btn-sm">Add Services</a>
+    <a th:href="${'/AddProviderService/' + provider.providerId}" class="btn btn-success">Add Services</a>
+
+
 </div>
 
 

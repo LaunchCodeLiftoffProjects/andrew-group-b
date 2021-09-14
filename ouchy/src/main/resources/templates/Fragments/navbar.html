@@ -2,21 +2,38 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 
 <body>
-    <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <nav th:fragment="navbar" class="navbar navbar-expand-xxl navbar-light bg-light fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/"><img th:src="@{/Images/project_ouchy.png}" alt = "Logo"/></a>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav ms-auto">
-                    <a class="nav-link mx-5" aria-current="page" href="/Services">Services</a>
-                    <a class="nav-link mx-5" aria-current="page" href="/Providers">Providers</a>
-                    <a class="nav-link mx-5" href="#">About Us</a>
-                    <a class="nav-link mx-5" href="/Mission">Mission Statement</a>
-                    <a class="nav-link mx-5" href="/myAccount">My Account</a>
-                    <form class="d-flex" action="/Search" method="post">
-                        <input class="form-control me-2" name="searchTerm" id="searchTerm" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
+            <a class="navbar-brand " href="/"><img class="w-75" th:src="@{/Images/project_ouchy.png}" alt = "Logo"/></a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                    <span class="navbar-toggler-icon ms-auto"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link mx-3" aria-current="page" href="/Services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-3" aria-current="page" href="/Providers">Providers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-3" href="/AboutUs">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-3" href="/FAQ">FAQs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-3" href="/myAccount">My Account</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="searchBar">
+                <form class="d-flex" action="/Search" method="post">
+                    <input class="form-control me-2" name="searchTerm" id="searchTerm" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
             </div>
         </div>
     </nav>
