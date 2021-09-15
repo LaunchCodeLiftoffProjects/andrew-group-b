@@ -97,17 +97,9 @@ public class Provider {
         for(Provider entry : providerList) {
             if(entry.getProviderName().toLowerCase().contains(searchTerm.toLowerCase())) {
                 matchingProviders.add(entry);
-                break;
-            } else {
-                for(ProviderServiceDTO service : entry.getProviderServices()) {
-                    if(service.getServiceName().toLowerCase().contains(searchTerm.toLowerCase())) {
-                        matchingProviders.add(entry);
-                        break;
-                    }
-                }
             }
         }
-
         return matchingProviders;
     }
+
 }
