@@ -14,6 +14,7 @@ import java.io.Console;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ListController {
@@ -53,14 +54,6 @@ public class ListController {
         return "listServices";
     }
 
-    @PostMapping("Search")
-    public String processSearchTerm(Model model, @RequestParam String searchTerm) {
-        model.addAttribute("title", "Search Results");
-        model.addAttribute("providers", Provider.userSearch(searchTerm, providerRepository.findAll()));
-
-        return "search";
-    }
-
     @GetMapping("FAQ")
     public String missionImpossible(Model model) {
         model.addAttribute("title", "Frequently asked questions");
@@ -75,36 +68,21 @@ public class ListController {
         return "aboutus";
     }
 
-    /** Generates the JSON data for the search box autocomplete
-     * Currently searches for any Provider/Service name that contains the search term.  Could update later to list those
-     * that start with the term first then add those that contain the term second.  May be more useful to users.
-     */
+    @GetMapping("Provider/{providerId}")
+    public String displayProviderDetails(Model model, @PathVariable int providerId) {
+        Optional optional= providerRepository.findById(providerId);
+        if(!optional.isEmpty()) {
+            Provider provider = (Provider) optional.get();
 
-    @RequestMapping("searchTermAutocomplete")
-    @ResponseBody
-    public List<String> searchTermAutocomplete(@RequestParam String term) {
-        List<String> suggestions = new ArrayList<String>();
+            model.addAttribute("title", provider.getProviderName());
+            model.addAttribute("provider", provider);
 
-        Iterable<Provider> providers = providerRepository.findAll();
-        Iterable<Service> services = serviceRepository.findAll();
-
-        /**  Checking to see if the provider name contains the search term */
-        for(Provider provider : providers) {
-            if(provider.getProviderName().toLowerCase().contains(term.toLowerCase())) {
-                suggestions.add(provider.getProviderName());
-            }
+            return "providerDetails";
+        } else {
+            return "redirect:.";
         }
 
-        /**  Checking to see if the service name contains the search term */
-        for(Service service : services) {
-            if(service.getServiceName().toLowerCase().contains(term.toLowerCase())){
-                suggestions.add(service.getServiceName());
-            }
-        }
 
-        /**  Sorting possible results alphabetically  */
-        Collections.sort(suggestions);
-
-        return suggestions;
     }
+
 }

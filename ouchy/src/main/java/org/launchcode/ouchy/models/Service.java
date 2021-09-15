@@ -47,4 +47,18 @@ public class Service {
     public void setServiceDescription(String serviceDescription) {
         this.serviceDescription = serviceDescription;
     }
+
+    public static List<Service> userSearch(String searchTerm, Iterable<Service> services) {
+        List<Service> serviceList = new ArrayList<Service>();
+        services.forEach(serviceList::add);
+
+        List<Service> matchingServices = new ArrayList<Service>();
+
+        for(Service entry : serviceList) {
+            if(entry.getServiceName().toLowerCase().contains(searchTerm.toLowerCase())) {
+                matchingServices.add(entry);
+            }
+        }
+        return matchingServices;
+    }
 }
