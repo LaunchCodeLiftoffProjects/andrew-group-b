@@ -21,6 +21,7 @@ public class Provider {
         this.providerAddress = providerAddress;
         this.providerPhone = providerPhone;
         this.providerEmail = providerEmail;
+        this.providerRating = providerRating;
     }
 
     @Id
@@ -43,6 +44,10 @@ public class Provider {
     @NotBlank
     @Email
     private String providerEmail;
+
+    @NotNull
+    @NotBlank
+    private int providerRating;
 
     @OneToMany
     @JoinColumn(name = "providerid")
@@ -68,6 +73,8 @@ public class Provider {
         return providerEmail;
     }
 
+    public int getProviderRating() { return providerRating; }
+
     public List<ProviderServiceDTO> getProviderServices() {
         return providerServices;
     }
@@ -87,6 +94,8 @@ public class Provider {
     public void setProviderEmail(String providerEmail) {
         this.providerEmail = providerEmail;
     }
+
+    public void setProviderRating(int providerRating) { this.providerRating = providerRating; }
 
     public static List<Provider> userSearch(String searchTerm, Iterable<Provider> providers) {
         List<Provider> providerList = new ArrayList<Provider>();
